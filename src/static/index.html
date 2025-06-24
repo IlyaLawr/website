@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ритуал-С</title>
+    <link rel="manifest" href="../static/favicon_io/site.webmanifest">
+    <link rel="icon" href="../static/favicon_io/favicon.ico" type="image/x-icon">
+    <!-- PNG-версии для разных устройств -->
+    <link rel="icon" type="image/png" sizes="16x16" href="../static/favicon_io/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../static/favicon_io/favicon-32x32.png">
+    <!-- Android Chrome -->
+    <link rel="icon" type="image/png" sizes="192x192" href="../static/favicon_io/android-chrome-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="../static/favicon_io/android-chrome-512x512.png">
+    <!-- для iOS (apple-touch) -->
+    <link rel="apple-touch-icon" sizes="180x180" href="../static/favicon_io/apple-touch-icon.png">
+    <link rel="stylesheet" href="static/css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Шапка сайта -->
+    <header class="header">
+        <div class="container header__container">
+            <a href="#home" class="logo">
+                <img src="../static/images/logo-golub.png" alt="Логотип Ритуал-С" class="logo__image">
+                Ритуал-С
+            </a>
+            <nav class="navigation">
+                <a href="#about" class="nav-link">О нас</a>
+                <a href="#services" class="nav-link">Услуги</a>
+                <a href="#portfolio" class="nav-link">Примеры работ</a>
+                <a href="#contacts" class="nav-link">Контакты</a>
+            </nav>
+            <div class="header__placeholder"></div> <!-- Для выравнивания навигации по центру -->
+        </div>
+    </header>
+
+    <main>
+        <!-- Главный экран -->
+        <section id="home" class="hero">
+            <div class="hero__overlay"></div>
+            <div class="container hero__container">
+                <h1 class="hero__title">Забудьте про организацию. Сосредоточьтесь на воспоминаниях.</h1>
+                <p class="hero__subtitle">Профессиональная организация похорон, чтобы в вашей памяти осталось только прощание.</p>
+                <a href="#contacts" class="button hero__button">Оставить заявку</a>
+            </div>
+        </section>
+
+        <!-- Секция О нас -->
+        <section id="about" class="about">
+            <div class="container about__container">
+                <div class="about__content">
+                    <h2 class="section-title">О нас</h2>
+                    <p>«Ритуал-С» — это не просто ритуальное агентство. Это команда чутких и опытных специалистов, которые понимают всю деликатность момента. Наша миссия — предоставить безупречный сервис и поддержку, освободив вас от организационных забот в трудный час.</p>
+                    <p>Мы предлагаем комплексный подход, основанный на уважении к традициям, внимании к деталям и индивидуальным пожеланиям. Доверие клиентов — наша главная ценность, и мы делаем все, чтобы оправдать его на каждом этапе.</p>
+                </div>
+                <div class="about__image-container">
+                    <img src="../static/images/about-us-image.png" alt="Интерьер офиса Ритуал-С" class="about__image">
+                </div>
+            </div>
+        </section>
+
+        <!-- Секция Услуги -->
+        <section id="services" class="services">
+            <div class="container">
+                <h2 class="section-title">Услуги</h2>
+                <div class="services__grid">
+                    <div class="service-card">
+                        <h3 class="service-card__title">Организация похорон</h3>
+                        <p class="service-card__description">Полный комплекс услуг по организации и проведению траурной церемонии с учетом всех традиций и пожеланий.</p>
+                    </div>
+                    <div class="service-card">
+                        <h3 class="service-card__title">Кремация</h3>
+                        <p class="service-card__description">Деликатная организация процесса кремации, предоставление всех необходимых принадлежностей и документов.</p>
+                    </div>
+                    <div class="service-card">
+                        <h3 class="service-card__title">Ритуальные товары</h3>
+                        <p class="service-card__description">Широкий выбор ритуальных товаров премиум-качества: гробы, венки, памятники и аксессуары.</p>
+                    </div>
+                    <div class="service-card">
+                        <h3 class="service-card__title">Международная репатриация</h3>
+                        <p class="service-card__description">Оформление документов и транспортировка тела усопшего из любой точки мира с соблюдением всех норм.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Секция Примеры работ -->
+        <section id="portfolio" class="portfolio">
+            <div class="container">
+                <h2 class="section-title">Примеры работ</h2>
+                <div class="portfolio__slider-container">
+                    <button class="slider-arrow slider-arrow--left" id="slider-prev" aria-label="Предыдущий слайд">&lt;</button>
+                    <div class="portfolio__slider-viewport">
+                        <div class="portfolio__slider-track" id="slider-track">
+                            <div class="portfolio-item">
+                                <img src="../static/images/portfolio-1.png" alt="Оформление зала прощания">
+                                <p>Оформление зала прощания</p>
+                            </div>
+                            <div class="portfolio-item">
+                                <img src="../static/images/portfolio-2.png" alt="Элитный лакированный гроб">
+                                <p>Элитные ритуальные товары</p>
+                            </div>
+                            <div class="portfolio-item">
+                                <img src="../static/images/portfolio-3.png" alt="Траурный венок из живых цветов">
+                                <p>Эксклюзивная флористика</p>
+                            </div>
+                            <div class="portfolio-item">
+                                <img src="../static/images/portfolio-4.png" alt="Катафалк премиум-класса">
+                                <p>Ритуальный транспорт</p>
+                            </div>
+                             <div class="portfolio-item">
+                                <img src="../static/images/portfolio-5.png" alt="Организация кремации">
+                                <p>Организация кремации</p>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="slider-arrow slider-arrow--right" id="slider-next" aria-label="Следующий слайд">&gt;</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Секция Контакты -->
+        <section id="contacts" class="contacts">
+            <div class="container contacts__container">
+                <div class="contacts__info-column">
+                    <div class="contacts__map-container">
+                        <h2 class="section-title section-title--light">Контакты</h2>
+                        <img src="../static/images/map.png" alt="Карта с расположением офиса" class="contacts__map">
+                    </div>
+                    <div class="contacts__details">
+                        <div class="contact-item">
+                            <span class="contact-item__title">Адрес:</span>
+                            <p>г. Саратов, пос. Тепличный, ​Комсомольская улица, 3а, 1 этаж</p>
+                        </div>
+                        <div class="contact-item">
+                            <span class="contact-item__title">Время работы:</span>
+                            <p>Круглосуточно, без выходных</p>
+                        </div>
+                        <div class="contact-item">
+                            <span class="contact-item__title">Телефоны:</span>
+                            <p>+7 (904) 241-04-21</p>
+                            <p>+7 (900) 312-16-56</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="contacts__form-container">
+                    <h2 class="section-title section-title--light">Свяжитесь с нами</h2>
+                    <p class="contacts__text">Принимаем заявки круглосуточно. Оставьте заявку, и мы свяжемся с вами в ближайшее время.</p>
+                    <form id="contact-form" class="contact-form">
+                        <div class="form-group">
+                            <label for="name" class="form-label">Имя</label>
+                            <input type="text" id="name" name="name" class="form-input" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone" class="form-label">Телефон</label>
+                            <input type="tel" id="phone" name="phone" class="form-input" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="comment" class="form-label">Комментарий</label>
+                            <textarea id="comment" name="comment" class="form-input" rows="4"></textarea>
+                        </div>
+                        <button type="submit" class="button form__button">Отправить заявку</button>
+                    </form>
+                     <div id="form-message" class="form-message"></div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Подвал сайта -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025, Ритуал-С. Все права защищены.</p>
+        </div>
+    </footer>
+
+    <script src="/static/js/script.js"></script>
+</body>
+</html>

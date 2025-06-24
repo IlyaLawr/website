@@ -1,0 +1,594 @@
+/* 
+   Глобальные переменные для удобного управления палитрой и шрифтами.
+   Это делает код чище и упрощает изменение дизайна.
+*/
+:root {
+    --primary-color: #0A2342; /* Глубокий синий */
+    --secondary-color: #FFFFFF; /* Белый */
+    --accent-color: #D4AF37; /* Золотой акцент (для кнопок и деталей) */
+    --text-color: #333333; /* Основной цвет текста */
+    --light-gray: #f4f4f4; /* Светло-серый для фона */
+    --font-primary: 'Playfair Display', serif; /* Шрифт для заголовков */
+    --font-secondary: 'Montserrat', sans-serif; /* Шрифт для основного текста */
+}
+
+/* 
+   Базовые стили и сброс отступов.
+   Плавная прокрутка для лучшего пользовательского опыта.
+*/
+html {
+    scroll-behavior: smooth; /* JS-прокрутка переопределяет это, но оставим для фолбэка */
+}
+
+body {
+    margin: 0;
+    font-family: var(--font-secondary);
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+/* 
+   Стиль контейнера для центрирования контента.
+   Ограничивает максимальную ширину для читабельности на больших экранах.
+*/
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Общий стиль для заголовков секций */
+.section-title {
+    font-family: var(--font-primary);
+    font-size: 2.8rem;
+    font-weight: 700;
+    margin-bottom: 40px;
+    color: var(--primary-color);
+    text-align: left;
+    position: relative;
+    padding-bottom: 10px; /* Уменьшили отступ для приближения линии */
+    display: inline-block; /* Для корректного расчета ширины подчеркивания */
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%; /* Ширина подчеркивания равна ширине текста */
+    height: 3px;
+    background-color: var(--accent-color);
+    transform: scaleX(0); /* Начальное состояние - линия скрыта */
+    transform-origin: left; /* Анимация будет идти слева направо */
+    transition: transform 0.8s cubic-bezier(0.23, 1, 0.32, 1); /* Плавный переход */
+}
+
+/* Класс для анимации подчеркивания при появлении в зоне видимости */
+.section-title.in-view::after {
+    transform: scaleX(1); /* Конечное состояние - линия видна */
+}
+
+/* Стили для заголовка в секции контактов, который находится над картой */
+.contacts__map-container .section-title {
+    margin-bottom: 20px;
+}
+
+.section-title--light {
+    color: var(--secondary-color);
+}
+
+.section-title--light::after {
+     background-color: var(--accent-color);
+}
+
+/* --- Общие компоненты --- */
+.button {
+    display: inline-block;
+    padding: 12px 30px;
+    font-family: var(--font-secondary);
+    font-weight: 400;
+    font-size: 1rem;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border: 1px solid var(--accent-color);
+    background-color: var(--accent-color);
+    color: var(--primary-color);
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.button:hover {
+    background-color: transparent;
+    color: var(--accent-color);
+}
+
+/* --- Шапка сайта --- */
+.header {
+    background-color: var(--primary-color);
+    padding: 15px 0;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.header__container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--font-primary);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--secondary-color);
+    text-decoration: none;
+}
+
+.logo__image {
+    height: 35px;
+    width: auto;
+}
+
+.navigation {
+    text-align: center;
+}
+
+.navigation a {
+    position: relative;
+    color: var(--secondary-color);
+    text-decoration: none;
+    margin: 0 20px;
+    font-size: 1rem;
+    font-weight: 300;
+    transition: color 0.3s ease;
+    padding: 5px 0;
+}
+
+.navigation a::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 1px;
+    background: var(--secondary-color);
+    bottom: 0;
+    left: 0;
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: transform 0.4s ease;
+}
+
+.navigation a:hover {
+    color: var(--secondary-color);
+}
+
+.navigation a:hover::after {
+    transform: scaleX(1);
+}
+
+.header__placeholder {
+    width: 105.14px; /* Примерная ширина логотипа для симметрии */
+    flex-shrink: 0;
+}
+
+/* --- Главный экран (Hero) --- */
+.hero {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: var(--secondary-color);
+    background-image: url('../images/backgroung-hero.png');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    padding-top: 65px; /* Компенсация высоты шапки */
+    box-sizing: border-box;
+}
+
+.hero__overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(10, 35, 66, 0.6); /* Полупрозрачный слой синего цвета */
+    z-index: 1;
+}
+
+.hero__container {
+    position: relative;
+    z-index: 2;
+}
+
+.hero__title {
+    font-family: var(--font-primary);
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin: 0 0 15px;
+    line-height: 1.2;
+}
+
+.hero__subtitle {
+    font-size: 1.2rem;
+    font-weight: 300;
+    max-width: 600px;
+    margin: 0 auto 40px;
+}
+
+.hero__button {
+    color: var(--secondary-color);
+}
+
+.hero__button:hover {
+    color: var(--accent-color);
+    border-color: var(--accent-color);
+}
+
+/* --- Секция О нас --- */
+.about {
+    padding: 80px 0;
+    background-color: var(--secondary-color);
+}
+
+.about__container {
+    display: flex;
+    align-items: center;
+    gap: 60px;
+}
+
+.about__content {
+    flex: 1;
+}
+
+.about__image-container {
+    flex: 1;
+    max-width: 500px;
+}
+
+.about__image {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* --- Секция Услуги --- */
+.services {
+    padding: 80px 0;
+    background-color: var(--light-gray);
+}
+
+.services__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+}
+
+.service-card {
+    border: 1px solid #e0e0e0;
+    background-color: var(--secondary-color);
+    padding: 30px;
+    text-align: center;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.service-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+}
+
+.service-card__title {
+    font-family: var(--font-primary);
+    font-size: 1.5rem;
+    margin: 0 0 15px;
+    color: var(--primary-color);
+}
+
+.service-card__description {
+    font-size: 0.95rem;
+    line-height: 1.7;
+    margin: 0;
+}
+
+/* --- Секция Примеры работ --- */
+.portfolio {
+    padding: 80px 0;
+    background-color: var(--secondary-color);
+}
+
+.portfolio__slider-container {
+    position: relative;
+    padding: 0 50px; /* Место для стрелок */
+}
+
+.portfolio__slider-viewport {
+    overflow: hidden;
+    width: 100%;
+}
+
+.portfolio__slider-track {
+    display: flex;
+    gap: 20px;
+    transition: transform 0.5s ease-in-out;
+}
+
+.portfolio-item {
+    flex: 0 0 calc(33.333% - 14px); /* 3 элемента с учетом gap */
+    text-align: center;
+}
+
+.portfolio-item img {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    display: block;
+    margin-bottom: 15px;
+}
+
+.portfolio-item p {
+    font-size: 1rem;
+    color: var(--text-color);
+    margin: 0;
+}
+
+.slider-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(255, 255, 255, 0.8);
+    border: 1px solid #ccc;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+    cursor: pointer;
+    z-index: 10;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.slider-arrow:hover {
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+    border-color: var(--primary-color);
+}
+
+.slider-arrow:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+.slider-arrow--left {
+    left: 0;
+}
+
+.slider-arrow--right {
+    right: 0;
+}
+
+/* --- Секция Контакты --- */
+.contacts {
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+    padding: 80px 0;
+}
+
+.contacts__container {
+    display: flex;
+    gap: 60px;
+    align-items: flex-start;
+}
+
+.contacts__info-column {
+    flex: 1;
+}
+
+.contacts__map-container {
+    margin-bottom: 30px;
+}
+
+.contacts__map {
+    width: 100%;
+    height: auto;
+    display: block;
+    border: 2px solid var(--accent-color);
+}
+
+.contacts__details {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.contact-item {
+    text-align: left;
+}
+
+.contact-item__title {
+    font-weight: 700;
+    display: block;
+    margin-bottom: 5px;
+    opacity: 0.9;
+}
+
+.contact-item p {
+    margin: 0;
+    font-weight: 300;
+    opacity: 0.8;
+    line-height: 1.5;
+}
+
+.contacts__form-container {
+    flex: 1;
+    max-width: 500px;
+}
+
+.contacts__text {
+    font-weight: 300;
+    opacity: 0.9;
+    margin-bottom: 30px;
+    text-align: left;
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-label {
+    font-size: 0.9rem;
+    margin-bottom: 5px;
+    opacity: 0.8;
+}
+
+.form-input {
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 0;
+    padding: 12px;
+    color: var(--secondary-color);
+    font-family: var(--font-secondary);
+    font-size: 1rem;
+    transition: border-color 0.3s, background-color 0.3s;
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    background-color: rgba(255, 255, 255, 0.15);
+}
+
+.form__button {
+    margin-top: 10px;
+    align-self: flex-start;
+}
+
+.form-message {
+    margin-top: 20px;
+    min-height: 1.5em;
+    font-size: 1rem;
+}
+
+/* --- Подвал --- */
+.footer {
+    background-color: #f8f9fa;
+    padding: 20px 0;
+    text-align: center;
+    font-size: 0.9rem;
+    color: #6c757d;
+    border-top: 1px solid #e0e0e0;
+}
+
+/* --- Адаптивность --- */
+@media (max-width: 992px) {
+    .hero {
+        background-position: 25% center;
+    }
+
+    .about__container, .contacts__container {
+        flex-direction: column;
+        align-items: stretch; /* Растягиваем элементы, чтобы занять всю ширину */
+    }
+
+    .about__image-container, .contacts__form-container {
+        max-width: 100%;
+    }
+
+    .portfolio-item {
+        flex: 0 0 calc(50% - 10px); /* 2 элемента */
+    }
+}
+
+@media (max-width: 768px) {
+    .header__container {
+        flex-direction: column;
+        padding-bottom: 15px;
+    }
+
+    .header__placeholder {
+        display: none;
+    }
+
+    .logo {
+        margin-bottom: 15px;
+    }
+    
+    .navigation a {
+        margin: 0 10px;
+    }
+
+    .hero {
+        padding-top: 110px; /* Увеличенный отступ для мобильной шапки */
+        background-position: 25% center;
+        background-attachment: scroll;
+    }
+
+    .hero__title {
+        font-size: 2.5rem;
+    }
+
+    .hero__subtitle {
+        font-size: 1rem;
+    }
+
+    .section-title {
+        font-size: 2.2rem;
+    }
+    
+    .portfolio__slider-container {
+        padding: 0 40px;
+    }
+    
+    .slider-arrow {
+        width: 35px;
+        height: 35px;
+        font-size: 16px;
+    }
+
+    .portfolio-item {
+        flex: 0 0 100%; /* 1 элемент */
+    }
+
+    .contacts__container {
+        text-align: center;
+    }
+
+    .contacts__info-column .section-title,
+    .contacts__info-column .section-title::after {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .contacts__details, .contact-item {
+        text-align: center;
+    }
+    
+    .contacts__form-container .section-title,
+    .contacts__form-container .section-title::after {
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    .contacts__text {
+        text-align: center;
+    }
+    
+    .form__button {
+        align-self: center;
+    }
+}
