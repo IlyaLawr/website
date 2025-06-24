@@ -534,7 +534,8 @@ body {
 
     .hero {
         padding-top: 110px; /* Увеличенный отступ для мобильной шапки */
-        background-position: 25% center;
+        background-position: 75% center;
+        background-repeat: no-repeat;
         background-attachment: scroll;
     }
 
